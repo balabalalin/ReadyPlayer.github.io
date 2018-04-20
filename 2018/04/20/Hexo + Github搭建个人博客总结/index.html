@@ -90,9 +90,9 @@
 <meta property="og:image" content="http://yoursite.com/images/2018-4-20/1.PNG">
 <meta property="og:image" content="http://yoursite.com/images/2018-4-20/2.PNG">
 <meta property="og:image" content="http://yoursite.com/images/2018-4-20/3.PNG">
-<meta property="og:image" content="http://yoursite.com/images/2018-4-20/4.png">
+<meta property="og:image" content="http://yoursite.com/images/2018-4-20/4.PNG">
 <meta property="og:image" content="http://yoursite.com/images/2018-4-20/5.PNG">
-<meta property="og:updated_time" content="2018-04-20T15:00:18.883Z">
+<meta property="og:updated_time" content="2018-04-20T15:02:46.818Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo + Github搭建个人博客总结">
 <meta name="twitter:description" content="这几天尝试使用Hexo + Github搭建个人博客，终于搞定了，现在来总结下搭建过程中遇到的各种坑! 安装环境 + 本地运行Hexo众所周知，想要在本地上运行Hexo博客需要安装nodejs和npm环境!然后安装hexo1$npm install -g hexo 切换到一个准备好存放博客的文件夹(文件夹需要为空)1$hexo init 这样可以在这个文件夹内创建一个hexo博客的环境 安装需要的">
@@ -378,7 +378,7 @@
 <p></p><h3>将Hexo博客推送到Github</h3><br>现在我们就可以将本地的Hexo博客推送到Github博客上了<br>首先需要在<b>站点配置文件_config.yml</b>中添加deploy参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: ssh://git@github.com/username/username.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure><p></p>
 <p>接下来需要利用到git-bash工具了<a href="https://git-scm.com/download/win" target="_blank" rel="noopener">git-bash</a><br>利用git工具生成ssh密钥<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C &quot;your_email@example.com&quot;</span><br><span class="line"># Creates a new ssh key using the provided email</span><br><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/home/you/.ssh/id_rsa):</span><br></pre></td></tr></table></figure></p>
 <p>输入ssh密钥的保存位置后(默认就回车)<br>接下来输入ssh密码即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Enter passphrase (empty for no passphrase): [Type a passphrase]</span><br><span class="line">Enter same passphrase again: [Type passphrase again]</span><br></pre></td></tr></table></figure></p>
-<p>回车后ssh密钥即在指定的位置生成了!<br>到ssh密钥的生成路径复制id_rsa.pub文件中的内容<br>打开github,选择需要推送的仓库后—Settings<br><img src="/images/2018-4-20/4.png" alt="4"><br>设置Deploy  Keys的Titile，将ssh密钥粘贴到Key栏中点击Add Key确认后即可设置该仓库的推送密钥<br>可以通过在git中对这个ssh密钥进行验证测试!<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ssh -T git@github.com</span><br></pre></td></tr></table></figure></p>
+<p>回车后ssh密钥即在指定的位置生成了!<br>到ssh密钥的生成路径复制id_rsa.pub文件中的内容<br>打开github,选择需要推送的仓库后—Settings<br><img src="/images/2018-4-20/4.PNG" alt="4"><br>设置Deploy  Keys的Titile，将ssh密钥粘贴到Key栏中点击Add Key确认后即可设置该仓库的推送密钥<br>可以通过在git中对这个ssh密钥进行验证测试!<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ssh -T git@github.com</span><br></pre></td></tr></table></figure></p>
 <p>输入创建ssh密钥时输入的密码!如果返回xxxx You’ve successful authenticated则代表这个ssh密钥设置成功了!<br>接下来在git中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$npm install hexo-deployer-git</span><br><span class="line">$hexo clean</span><br><span class="line">$hexo g</span><br><span class="line">$hexo d</span><br></pre></td></tr></table></figure></p>
 <p>然后按照指示输入你设置ssh密钥时的密码即可！<br>当出现下面的提示就推送成功了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INFO  Deploy done: git</span><br></pre></td></tr></table></figure></p>
 <p>可能出现的错误<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Error: ERROR: The key you are authenticating with has been marked as read only.</span><br><span class="line">fatal: Could not read from remote repository.</span><br></pre></td></tr></table></figure></p>
@@ -410,22 +410,6 @@
       
       
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/20/BACKUP/Test/" rel="prev" title="Test">
-                Test <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
 
       
@@ -503,21 +487,12 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
             
 
             
