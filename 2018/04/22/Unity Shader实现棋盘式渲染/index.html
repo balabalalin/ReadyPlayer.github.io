@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Shader,Unity," />
 
 
 
@@ -79,17 +79,24 @@
 
 
 
-<meta name="description" content="Dreamer&apos;s Blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="https://www.natsume.club/tags/index.html">
+<meta name="description" content="Unity Shader学习打卡!最近在Unity Shader的官方教程中学习到了利用VPOS语义来获取屏幕空间像素坐标并利用该语义对游戏对象进行棋盘式的渲染!PS:使用像素位置语义(VPOS)使得很难在同一个顶点到片段结构中同时使用剪​​辑空间位置（SV_POSITION）和VPOS。所以当使用VPOS语义时顶点着色器应该输出剪辑空间位置作为一个单独的“out”变量。 先上效果图:关键式是利用">
+<meta name="keywords" content="Shader,Unity">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity Shader入门(1)---实现棋盘式渲染">
+<meta property="og:url" content="https://www.natsume.club/2018/04/22/Unity Shader实现棋盘式渲染/index.html">
 <meta property="og:site_name" content="Dreamer&#39;s Blog">
-<meta property="og:description" content="Dreamer&apos;s Blog">
+<meta property="og:description" content="Unity Shader学习打卡!最近在Unity Shader的官方教程中学习到了利用VPOS语义来获取屏幕空间像素坐标并利用该语义对游戏对象进行棋盘式的渲染!PS:使用像素位置语义(VPOS)使得很难在同一个顶点到片段结构中同时使用剪​​辑空间位置（SV_POSITION）和VPOS。所以当使用VPOS语义时顶点着色器应该输出剪辑空间位置作为一个单独的“out”变量。 先上效果图:关键式是利用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-20T13:40:12.051Z">
+<meta property="og:image" content="https://www.natsume.club/images/2018-4-22/1.PNG">
+<meta property="og:image" content="https://www.natsume.club/images/2018-4-22/2.PNG">
+<meta property="og:image" content="https://www.natsume.club/images/2018-4-22/3.PNG">
+<meta property="og:image" content="https://www.natsume.club/images/2018-4-22/4.PNG">
+<meta property="og:image" content="https://www.natsume.club/images/2018-4-22/5.PNG">
+<meta property="og:updated_time" content="2018-04-22T14:47:56.239Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
-<meta name="twitter:description" content="Dreamer&apos;s Blog">
+<meta name="twitter:title" content="Unity Shader入门(1)---实现棋盘式渲染">
+<meta name="twitter:description" content="Unity Shader学习打卡!最近在Unity Shader的官方教程中学习到了利用VPOS语义来获取屏幕空间像素坐标并利用该语义对游戏对象进行棋盘式的渲染!PS:使用像素位置语义(VPOS)使得很难在同一个顶点到片段结构中同时使用剪​​辑空间位置（SV_POSITION）和VPOS。所以当使用VPOS语义时顶点着色器应该输出剪辑空间位置作为一个单独的“out”变量。 先上效果图:关键式是利用">
+<meta name="twitter:image" content="https://www.natsume.club/images/2018-4-22/1.PNG">
 
 
 
@@ -119,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://www.natsume.club/tags/"/>
+  <link rel="canonical" href="https://www.natsume.club/2018/04/22/Unity Shader实现棋盘式渲染/"/>
 
 
 
 
 
-  <title>tags | Dreamer's Blog</title>
+  <title>Unity Shader入门(1)---实现棋盘式渲染 | Dreamer's Blog</title>
   
 
 
@@ -274,40 +281,219 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.natsume.club/2018/04/22/Unity Shader实现棋盘式渲染/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dreamer">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/MyHead.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dreamer's Blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">tags</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                目前共计 3 个标签
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/Hexo/" style="font-size: 12px; color: #ccc">Hexo</a> <a href="/tags/Shader/" style="font-size: 12px; color: #ccc">Shader</a> <a href="/tags/Unity/" style="font-size: 12px; color: #ccc">Unity</a>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">Unity Shader入门(1)---实现棋盘式渲染</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T20:08:16+08:00">
+                2018-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Unity-Shader/" itemprop="url" rel="index">
+                    <span itemprop="name">Unity Shader</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>Unity Shader学习打卡!<br>最近在Unity Shader的官方教程中学习到了利用VPOS语义来获取屏幕空间像素坐标并利用该语义对游戏对象进行棋盘式的渲染!<br><b>PS:使用像素位置语义(VPOS)使得很难在同一个顶点到片段结构中同时使用剪​​辑空间位置（SV_POSITION）和VPOS。所以当使用VPOS语义时顶点着色器应该输出剪辑空间位置作为一个单独的“out”变量。<br></b></p>
+<p>先上效果图:<br><img src="/images/2018-4-22/1.PNG" alt="1"><br>关键式是利用VPOS获取到的像素坐标值来实现下图的效果:<br><img src="/images/2018-4-22/2.PNG" alt="2"><br>根据图我们可以明确我们实现的过程，就是将像素坐标和为偶数的像素点渲染，为奇数的跳过渲染!<br>我们可以利用clip(x)函数来实现跳过渲染的操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clip(x) : 如果x向量中任何一个元素的值小于0则丢弃(跳过)该像素</span><br></pre></td></tr></table></figure></p>
+<p>由于Unity Shader中好像没有可以用来判断奇偶的函数!所以我们需要利用其他的函数来实现判断的效果!<br>这里我用到的函数有<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frac(x) : 取x值的小数</span><br></pre></td></tr></table></figure></p>
+<p>我们将得到的像素坐标值乘于0.5(除于2)然后再利用这个函数来取小数值就可以判断这个值是奇数还是偶数了!<br>奇数/2有小数，偶数/2没小数!<br>然后再对这个值进行取反的操作!这样像素坐标和为偶数的可以得到一个为0的值，而像素坐标和为奇数的会得到一个负数的值!<br>然后我们再利用clip(x)函数对这个得到的值进行判断，就可以跳过渲染像素坐标和为奇数的像素点!<br>实现后的效果图:<br><img src="/images/2018-4-22/3.PNG" alt="3"><br>可以看到实现的效果并不理想，棋盘的效果并不明显!因为每一个像素点实在太小了我们并不能直观的看到!<br>假设我们需要将这个效果放大16倍!<br>我们可以让每16个像素点都作为一个像素点来渲染!<br><img src="/images/2018-4-22/4.PNG" alt="4"><br>这样我们就可以实现放大的效果!<br><b>PS:因为(0, 0)这个坐标点有点特殊所以我们就不理它了，并不影响最后效果，因为实在太小了!</b><br>利用的函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">floor(x) : 返回小于等于这个值的最大整数</span><br></pre></td></tr></table></figure></p>
+<p>将每一个像素坐标点的x, y坐标都乘于0.25(除于4)，然后利用floor函数进行运算!<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x = floor(x * 0.25);</span><br><span class="line">y = floor(y * 0.25);</span><br><span class="line">--------------------</span><br><span class="line">1 = floor(0.25) = 1;</span><br><span class="line">2 = floor(0.5) = 1;</span><br><span class="line">3 = floor(0.75) = 1;</span><br><span class="line">4 = floor(1) = 1;</span><br><span class="line">这里的1,2,3,4为像素点的x,y坐标!</span><br></pre></td></tr></table></figure></p>
+<p>这样一来每16个像素点(4 * 4)都作为一个像素点来渲染了!<br>效果:<br><img src="/images/2018-4-22/5.PNG" alt="5"></p>
+<p>贴上代码:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">Shader <span class="string">"Custom/Vpos"</span> &#123;</span><br><span class="line">	Properties</span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="comment">//声明两个属性:贴图、棋盘格子大小(0.1, 1)10倍到1倍</span></span><br><span class="line">        _MainTex (<span class="string">"Texture"</span>, <span class="number">2</span>D) = <span class="string">"white"</span> &#123;&#125;</span><br><span class="line">        _CheckerRange (<span class="string">"CheckerRanger"</span>, range(<span class="number">0.1</span>, <span class="number">1</span>)) = <span class="number">0.25</span></span><br><span class="line">    &#125;</span><br><span class="line">    SubShader</span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="comment">//顶点着色器和片段着色器需要写在在Pass通道中</span></span><br><span class="line">		Pass</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">//shader本体</span></span><br><span class="line">			CGPROGRAM</span><br><span class="line">			<span class="comment">//编译指令，指明了vertex和fragment的方法名</span></span><br><span class="line">			#pragma vertex vert</span><br><span class="line">			#pragma fragment frag</span><br><span class="line">			</span><br><span class="line">			<span class="comment">//获取Properties中声明的属性值</span></span><br><span class="line">			sampler2D _MainTex;</span><br><span class="line">			fixed _CheckerRange;</span><br><span class="line"></span><br><span class="line">			<span class="comment">//定义一个a2v结构体，用来传递多个变量值给vert方法!</span></span><br><span class="line">			<span class="class"><span class="keyword">struct</span> <span class="title">a2v</span></span></span><br><span class="line"><span class="class">			&#123;</span></span><br><span class="line">				<span class="comment">//获取对象的顶点坐标</span></span><br><span class="line">				float4 vertex : POSITION;</span><br><span class="line">				<span class="comment">//获取对象的第一UV坐标</span></span><br><span class="line">				float2 uv : TEXCOORD0;</span><br><span class="line">			&#125;;</span><br><span class="line"></span><br><span class="line">			<span class="comment">//定义一个v2f结构体，作为vert的返回值</span></span><br><span class="line">			<span class="class"><span class="keyword">struct</span> <span class="title">v2f</span></span></span><br><span class="line"><span class="class">			&#123;</span></span><br><span class="line">				<span class="comment">//声明一个语义为第一UV坐标的变量</span></span><br><span class="line">				float2 uv : TEXCOORD0;</span><br><span class="line">			&#125;;</span><br><span class="line"></span><br><span class="line">			<span class="comment">//定义vert方法</span></span><br><span class="line">			<span class="function">v2f <span class="title">vert</span><span class="params">(a2v i, out float4 outpos : SV_POSITION)</span></span></span><br><span class="line"><span class="function">			</span>&#123;</span><br><span class="line">				v2f o;</span><br><span class="line">				o.uv = i.uv;</span><br><span class="line">				<span class="comment">//将对象顶点坐标转化到"剪辑空间"</span></span><br><span class="line">				<span class="comment">//当使用VPOS语义时需要将剪辑空间位置作为一个单独的"out"变量</span></span><br><span class="line">				outpos = UnityObjectToClipPos(i.vertex);</span><br><span class="line">				</span><br><span class="line">				<span class="keyword">return</span> o;				</span><br><span class="line">			&#125;;</span><br><span class="line"></span><br><span class="line">			<span class="comment">//定义frag方法，这里将语义为VPOS的screenPos作为参数传入</span></span><br><span class="line">			<span class="comment">//为了实现最大的可移植性!需要使用UNITY_VPOS_TYPE作为语义为VPOS变量的数据类型!</span></span><br><span class="line">			fixed4 frag(v2f i, UNITY_VPOS_TYPE screenPos : VPOS) : SV_Target</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="comment">//将获取到的屏幕像素坐标的x,y轴乘于指定的_CheckerRange值</span></span><br><span class="line">				<span class="comment">//并利用floor函数取小于等于这个值的最大整数</span></span><br><span class="line">				<span class="comment">//实现多个像素点渲染成一个像素点，放大棋盘的效果</span></span><br><span class="line">				screenPos.x = <span class="built_in">floor</span>(screenPos.x * _CheckerRange);</span><br><span class="line">				screenPos.y = <span class="built_in">floor</span>(screenPos.y * _CheckerRange);</span><br><span class="line"></span><br><span class="line">				<span class="comment">//对这个像素点的x,y轴和进行运算操作</span></span><br><span class="line">				<span class="comment">//实现像素点之和为偶数的得到一个为0的值，为奇数的获取一个负数的值</span></span><br><span class="line">				<span class="keyword">float</span> checker = -frac((screenPos.x + screenPos.y) * <span class="number">0.5</span>);</span><br><span class="line"></span><br><span class="line">				<span class="comment">//对这个得到的值进行判断</span></span><br><span class="line">				<span class="comment">//实现像素点之和为偶数的渲染，为奇数的跳过渲染</span></span><br><span class="line">				clip(checker);</span><br><span class="line"></span><br><span class="line">				<span class="comment">//获取贴图的像素点值</span></span><br><span class="line">				fixed4 c = tex2D(_MainTex, i.uv);</span><br><span class="line">				<span class="keyword">return</span> c;</span><br><span class="line">			&#125;;</span><br><span class="line"></span><br><span class="line">			ENDCG</span><br><span class="line">		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
     
     
     
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/04/22/Unity Shader实现棋盘式渲染/">Unity Shader入门(1)---实现棋盘式渲染</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Dreamer 的个人博客">Dreamer</a></p>
+  <p><span>发布时间:</span>2018年04月22日 - 20:04</p>
+  <p><span>最后更新:</span>2018年04月22日 - 22:04</p>
+  <p><span>原始链接:</span><a href="/2018/04/22/Unity Shader实现棋盘式渲染/" title="Unity Shader入门(1)---实现棋盘式渲染">https://www.natsume.club/2018/04/22/Unity Shader实现棋盘式渲染/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://www.natsume.club/2018/04/22/Unity Shader实现棋盘式渲染/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+      
+   </div>
+
+  <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-----------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-----------------</div>
+    
+</div>
+  
+  </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Shader/" rel="tag"><i class="fa fa-tag"></i> Shader</a>
+          
+            <a href="/tags/Unity/" rel="tag"><i class="fa fa-tag"></i> Unity</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/20/Hexo + Github搭建个人博客总结/" rel="next" title="Hexo + Github搭建个人博客总结">
+                <i class="fa fa-chevron-left"></i> Hexo + Github搭建个人博客总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
